@@ -1,6 +1,7 @@
 import numpy as np
 import os
-from scipy.misc import imread, imresize
+#from scipy.misc import imread, imresize
+import cv2
 
 CLASS_INDEX = None
 CLASS_INDEX_PATH = 'https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json'
@@ -10,11 +11,15 @@ def preprocess_image_batch(image_paths, img_size=None, crop_size=None, color_mod
     img_list = []
 
     for im_path in image_paths:
-        img = imread(im_path, mode='RGB')
+        img = cv2.imread(im_path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         if img_size:
-            img = imresize(img,img_size)
+            img = cv2.resize(img, img_size)
 
         img = img.astype('float32')
+
+        # print(img)
+
         # We normalize the colors (in RGB space) with the empirical means on the training set
         img[:, :, 0] -= 123.68
         img[:, :, 1] -= 116.779
