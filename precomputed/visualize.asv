@@ -1,0 +1,37 @@
+mats(1) = load('CaffeNet.mat');
+mats(2) = load('GoogLeNet.mat');
+mats(3) = load('ResNet-152.mat');
+mats(4) = load('VGG-16.mat');
+mats(5) = load('VGG-19.mat');
+mats(6) = load('VGG-F.mat');
+
+img1 = mats(1).r;
+img2 = mats(2).r;
+img3 = mats(3).r;
+img4 = mats(4).r;
+img5 = mats(5).r;
+img6 = mats(6).r;
+
+subplot(6,1,1);
+imshow(img1, []);
+title("CaffeNet");
+
+subplot(6,1,2);
+imshow(img2, []);
+title("GoogLeNet");
+
+subplot(6,1,3);
+imshow(img3, []);
+title("ResNet-152");
+
+subplot(6,2,1);
+imshow(img4, []);
+title("VGG-16");
+
+subplot(6,2,2);
+imshow(imgs(5), []);
+title("VGG-19");
+
+subplot(6,2,3);
+imshow(imgs(6), []);
+title("VGG-F");
