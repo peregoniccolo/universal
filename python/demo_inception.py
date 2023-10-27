@@ -10,6 +10,7 @@ from prepare_imagenet_data import (
     undo_image_avg,
 )
 import matplotlib.pyplot as plt
+from PIL import Image
 import sys, getopt
 import zipfile
 from timeit import time
@@ -46,7 +47,7 @@ if __name__ == "__main__":
 
     # Default values
     path_train_imagenet = "/datasets2/ILSVRC2012/train"
-    path_test_image = "../webcam.jpg"
+    path_test_image = "./imgs/test_img.png"
 
     try:
         opts, args = getopt.getopt(argv, "i:t:", ["test_image=", "training_path="])
@@ -190,11 +191,11 @@ if __name__ == "__main__":
         )
         plt.title(str_label_perturbed)
 
-        plt.savefig("comparison.png")
+        plt.savefig("imgs/comparison.png")
 
-        # im = Image.fromarray(undo_image_avg(image_original[0, :, :, :]).astype(dtype='uint8'))
-        # im.save("original.jpeg")
-        # im = Image.fromarray(undo_image_avg(image_perturbed[0, :, :, :]).astype(dtype='uint8'))
-        # im.save("perturbed.jpeg")
+        im = Image.fromarray(undo_image_avg(image_original[0, :, :, :]).astype(dtype='uint8'))
+        im.save("imgs/original.jpeg")
+        im = Image.fromarray(undo_image_avg(image_perturbed[0, :, :, :]).astype(dtype='uint8'))
+        im.save("imgs/perturbed.jpeg")
 
         plt.show()
